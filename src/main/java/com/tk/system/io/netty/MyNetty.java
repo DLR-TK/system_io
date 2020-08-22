@@ -26,9 +26,9 @@ public class MyNetty {
 
         byteBuf.writeBytes(new byte[]{1,2,3,4});
         print(byteBuf);
-
-        byteBuf.readBytes(4);
-        print(byteBuf);
+//
+//        byteBuf.readBytes(4);
+//        print(byteBuf);
 
         byte[] bytes = new byte[4];
         byteBuf.getBytes(byteBuf.readerIndex(), bytes);
@@ -77,7 +77,7 @@ public class MyNetty {
 
         ChannelFuture connect = bootstrap.group(group)
                 .channel(NioSocketChannel.class)
-//                .handler(new ChannelInit())
+//                .service(new ChannelInit())
                 .handler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel ch) throws Exception {
@@ -115,7 +115,7 @@ public class MyNetty {
         ServerBootstrap bootstrap = new ServerBootstrap();
         ChannelFuture bind = bootstrap.group(group, group)
                 .channel(NioServerSocketChannel.class)
-//                .handler(new AcceptHandle(group, new ChannelInit()))
+//                .service(new AcceptHandle(group, new ChannelInit()))
 //                .childHandler(new ChannelInit())
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
